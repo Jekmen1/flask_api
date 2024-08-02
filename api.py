@@ -4,6 +4,7 @@ from flask_restful import Resource, Api, reqparse, abort
 app = Flask(__name__)
 api = Api(app)
 
+<<<<<<< HEAD
 todos = {
      1: {'task': 'write code', 'summary': 'using pycharm'},
      2: {'task': 'task 2', 'summary': 'using pycharm'},
@@ -14,6 +15,8 @@ task_post_args = reqparse.RequestParser()
 task_post_args.add_argument("task", type=str, help='Task is required',required=True)
 task_post_args.add_argument("summary", type=str, help='summary is required',required=True)
 
+=======
+>>>>>>> 7717c95484f2fd59b52e37095d338a901c5afcd1
 class HelloWorld(Resource):
     def get(self):
         return {'data': 'Hello, World!'}
