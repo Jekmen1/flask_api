@@ -16,8 +16,8 @@ class ToDoModel(db.Model):
 
 
 
-def create_tables():
-    db.create_all()
+
+db.create_all()
 
 
 task_post_args = reqparse.RequestParser()
