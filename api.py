@@ -1,24 +1,23 @@
 from flask import Flask
 from flask_restful import Resource, Api, reqparse, abort, fields, marshal_with
 from flask_sqlalchemy import SQLAlchemy
+import logging
+
+# Set up logging
+logging.basicConfig(level=logging.DEBUG)
 
 app = Flask(__name__)
 api = Api(app)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///sqlite.db'
 db = SQLAlchemy(app)
 
-
 class ToDoModel(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     task = db.Column(db.String(200))
     summary = db.Column(db.String(500))
 
-
-
-
 def create_tables():
     db.create_all()
-
 
 task_post_args = reqparse.RequestParser()
 task_post_args.add_argument("task", type=str, help='Task is required', required=True)
@@ -34,13 +33,11 @@ resource_fields = {
     'summary': fields.String
 }
 
-
 class TodoList(Resource):
     @marshal_with(resource_fields)
     def get(self):
         tasks = ToDoModel.query.all()
         return tasks
-
 
 class ToDo(Resource):
     @marshal_with(resource_fields)
@@ -86,10 +83,10 @@ class ToDo(Resource):
         db.session.commit()
         return '', 204
 
-
 api.add_resource(ToDo, '/todos/<int:todo_id>')
 api.add_resource(TodoList, '/todos')
 
-
 if __name__ == '__main__':
+    with app.app_context():
+        create_tables()
     app.run(debug=True)
