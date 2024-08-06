@@ -3,7 +3,7 @@ from flask_restful import Resource, Api, reqparse, abort, fields, marshal_with
 from flask_sqlalchemy import SQLAlchemy
 import logging
 
-# Set up logging
+
 logging.basicConfig(level=logging.DEBUG)
 
 app = Flask(__name__)
@@ -18,6 +18,7 @@ class ToDoModel(db.Model):
 
 def create_tables():
     db.create_all()
+
 
 task_post_args = reqparse.RequestParser()
 task_post_args.add_argument("task", type=str, help='Task is required', required=True)
