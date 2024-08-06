@@ -5,7 +5,7 @@ from flask_login import LoginManager, UserMixin, login_user, logout_user, curren
 from flask_bcrypt import Bcrypt
 import logging
 
-# Set up logging
+
 logging.basicConfig(level=logging.DEBUG)
 
 app = Flask(__name__)
@@ -34,7 +34,7 @@ def load_user(user_id):
 def create_tables():
     db.create_all()
 
-# Parsers
+
 task_post_args = reqparse.RequestParser()
 task_post_args.add_argument("task", type=str, help='Task is required', required=True)
 task_post_args.add_argument("summary", type=str, help='Summary is required', required=True)
@@ -63,7 +63,7 @@ class Register(Resource):
         db.session.commit()
         return jsonify(message="User registered successfully")
 
-# User Login
+
 class Login(Resource):
     def post(self):
         args = user_post_args.parse_args()
@@ -73,7 +73,7 @@ class Login(Resource):
             return jsonify(message="Logged in successfully")
         return abort(401, message="Invalid credentials")
 
-# User Logout
+
 class Logout(Resource):
     @login_required
     def post(self):
