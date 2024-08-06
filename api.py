@@ -3,7 +3,7 @@ from flask_restful import Resource, Api, reqparse, abort, fields, marshal_with
 from flask_sqlalchemy import SQLAlchemy
 import logging
 
-
+# Set up logging
 logging.basicConfig(level=logging.DEBUG)
 
 app = Flask(__name__)
