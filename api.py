@@ -2,7 +2,7 @@ from flask import Flask, request, jsonify
 from flask_restful import Resource, Api, reqparse, abort, fields, marshal_with
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, UserMixin, login_user, logout_user, current_user, login_required
-from flask_bcrypt import Bcryp
+from flask_bcrypt import Bcrypt
 import logging
 
 
